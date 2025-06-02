@@ -1,0 +1,9 @@
+.card {
+    background-color: blue;
+    border-width: 2px;
+    border-color: black;
+    height: 140px;
+    width: 95px;
+    cursor: grab;
+}
+
