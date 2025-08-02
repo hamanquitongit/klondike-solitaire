@@ -1,6 +1,7 @@
 package com.klondike.api.controller;
 
 import com.klondike.api.domain.response.GameStartResponse;
+import com.klondike.api.domain.response.GetTableResponse;
 import com.klondike.api.services.GameService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,12 @@ public class GameController {
         // game starting...
         gameService.dealInitialTable();
         return new GameStartResponse("Game Starting...");
+    }
+
+    @PostMapping("/getTable")
+    public GetTableResponse getTable() {
+        GetTableResponse response = new GetTableResponse(gameService.getCurrentTable());
+        log.info("Response: {}", response);
+        return  response;
     }
 }

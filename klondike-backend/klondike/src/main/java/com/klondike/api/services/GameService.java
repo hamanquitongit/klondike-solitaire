@@ -16,6 +16,9 @@ public class GameService {
     @Autowired
     CardService cardService;
 
+    @Autowired
+    InMemoryService memoryService;
+
 
     public void dealInitialTable() {
         // shuffle deck ()
@@ -25,7 +28,11 @@ public class GameService {
         log.info("DECK SHUFFLED: {}", shuffledDeck);
         // generate a table and deal cards
         Table table = cardService.dealTable(shuffledDeck);
+        memoryService.saveTable(table);
+        log.info("Table saved: {}", table);
+    }
 
-
+    public Table getCurrentTable() {
+       return memoryService.getGameState().get("1");
     }
 }

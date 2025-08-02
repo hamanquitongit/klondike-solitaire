@@ -42,11 +42,14 @@ public class CardService {
     }
 
     Table dealTable(Deque<PlayingCard> deck) {
+        log.info("undealt deck: {}", deck.size());
+        List<ArrayDeque<PlayingCard>> columns = dealColumns(deck);
+        log.info("Stock Size: {}", deck.size());
         return Table.builder()
                 .foundationPile(new Foundation())
-                .stockPile(new ArrayDeque<>())
+                .stockPile((ArrayDeque<PlayingCard>) deck)
                 .wastePile(new ArrayDeque<>())
-                .gameColumns(dealColumns(deck))
+                .gameColumns(columns)
                 .build();
     }
 
